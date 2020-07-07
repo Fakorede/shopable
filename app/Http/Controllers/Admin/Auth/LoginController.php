@@ -135,9 +135,14 @@ class LoginController extends Controller
      */
     private function loginFailed()
     {
+        $notification = array(
+            'message' => 'Incorrect credentials, please try again!',
+            'alert-type' => 'error',
+        );
+
         return redirect()
             ->back()
             ->withInput()
-            ->with('error','Login failed, please try again!');
+            ->with($notification);
     }
 }
