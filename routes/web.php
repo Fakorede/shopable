@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/password-change', 'HomeController@changePassword')->name('password.change');
 Route::get('/password-update', 'HomeController@updatePassword')->name('password.update');
-Route::get('/user/logout', 'HomeController@logout')->name('user.logout');
+// Route::post('/user/logout', 'LoginController@logout')->name('user.logout');
 
 // Admin Routes
 Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
