@@ -75,5 +75,7 @@ $ php artisan serve
 
 ## Built With
 
--   Laravel - The PHP framework for building the API endpoints needed for the application
--   Vue - The Progressive JavaScript Framework for building interactive interfaces
+-   Laravel - The PHP framework used for building the backend of the application
+
+<!-- -   Laravel - The PHP framework for building the API endpoints needed for the application
+-   Vue - The Progressive JavaScript Framework for building interactive interfaces -->

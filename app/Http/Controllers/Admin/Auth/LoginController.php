@@ -66,11 +66,16 @@ class LoginController extends Controller
     {
         $this->validator($request);
     
-        if(Auth::guard('admin')->Auth::attempt($request->only('email','password'),$request->filled('remember'))){
+        if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){
             //Authentication passed...
+            $notification = array(
+                'message' => 'Login Successful!',
+                'alert-type' => 'success'
+            );
+
             return redirect()
                 ->intended(route('admin.home'))
-                ->with('status','You are Logged in as Admin!');
+                ->with($notification);
         }
 
         //Authentication failed...
@@ -85,13 +90,14 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
+        session()->flush();
 
         $notification = array(
             'message' => 'Logout Successful!',
             'alert-type' => 'success'
         );
 
-        return redirect()->route('admin.login')->with($notification);
+        return redirect()->to('/admin/login')->with($notification);
     }
 
     protected function guard()
