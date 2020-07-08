@@ -44,8 +44,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
     Route::post('/password/update', 'HomeController@updatePassword')->name('password.update');
 
     // Category Routes
-    Route::namespace ('Category')->name('category.')->group(function () {
-        Route::get('/categories', 'CategoryController@category')->name('index');
+    Route::namespace ('Category')->prefix('/categories')->name('category.')->group(function () {
+        Route::get('/', 'CategoryController@index')->name('index');
+        Route::post('/store', 'CategoryController@store')->name('store');
+        Route::get('/edit/{id}', 'CategoryController@edit')->name('edit');
+        Route::post('/update/{id}', 'CategoryController@update')->name('update');
+        Route::get('/delete/{id}', 'CategoryController@delete')->name('delete');
     });
 
 });

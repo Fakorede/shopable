@@ -1,5 +1,4 @@
 * text=auto
 * linguist-vendored
 *.php linguist-vendored=false
-*.js linguist-vendored=false
 CHANGELOG.md export-ignore
