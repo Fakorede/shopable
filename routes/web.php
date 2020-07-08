@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 // Pages
 // Route::get('/', function () {
 //     return view('pages.index');
@@ -43,5 +42,10 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
     // Change Password Routes
     Route::get('/password/change', 'HomeController@changePassword')->name('password.change');
     Route::post('/password/update', 'HomeController@updatePassword')->name('password.update');
+
+    // Category Routes
+    Route::namespace ('Category')->name('category.')->group(function () {
+        Route::get('/categories', 'CategoryController@category')->name('index');
+    });
 
 });
