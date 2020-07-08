@@ -180,8 +180,8 @@
             e.preventDefault();
             var link = $(this).attr("href");
                swal({
-                 title: "Are you Want to delete?",
-                 text: "Once Delete, This will be Permanently Delete!",
+                 title: "Are you want to delete?",
+                 text: "Once deleted, this will no longer be recoverable!",
                  icon: "warning",
                  buttons: true,
                  dangerMode: true,
@@ -190,7 +190,7 @@
                  if (willDelete) {
                       window.location.href = link;
                  } else {
-                   swal("Safe Data!");
+                   swal("Action Cancelled!");
                  }
                });
         });
