@@ -52,4 +52,13 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
         Route::get('/delete/{id}', 'CategoryController@delete')->name('delete');
     });
 
+    // Brand Routes
+    Route::namespace('Category')->prefix('/brands')->name('brand.')->group(function() {
+        Route::get('/', 'BrandController@index')->name('index');
+        Route::post('/store', 'BrandController@store')->name('store');
+        Route::get('/edit/{id}', 'BrandController@edit')->name('edit');
+        Route::post('/update/{id}', 'BrandController@update')->name('update');
+        Route::get('/delete/{id}', 'BrandController@delete')->name('delete');
+    });
+
 });

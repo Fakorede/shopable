@@ -53,15 +53,14 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate([
             'name' => 'required|max:255',
         ]);
 
         $updated = DB::table('categories')
             ->where('id', $id)
             ->update([
-                'name' => $request->name,
-                'updated_at' => now(),
+                'name' => $request->name
             ]);
 
         if ($updated) {
@@ -79,7 +78,7 @@ class CategoryController extends Controller
                 'alert-type' => 'error',
             );
 
-            return redirect()->back()->with($notification);
+            return redirect()->route('admin.category.index')->with($notification);
 
         }
     }
