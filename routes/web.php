@@ -2,12 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Pages
-// Route::get('/', function () {
-//     return view('pages.index');
-// });
-
+// Frontend Routes
 Route::view('/', 'pages.index');
+
+Route::post('/newsletter/store', 'FrontendController@storeNewsletter')->name('newsletter.store');
 
 // User Auth Routes
 Auth::routes();
@@ -77,5 +75,11 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
         Route::get('/edit/{id}', 'CouponController@edit')->name('edit');
         Route::post('/update/{id}', 'CouponController@update')->name('update');
         Route::get('/delete/{id}', 'CouponController@delete')->name('delete');
+    });
+
+    // Newsletter Routes
+    Route::namespace ('Newsletter')->prefix('/newsletters')->name('newsletter.')->group(function () {
+        Route::get('/', 'NewsletterController@index')->name('index');
+        Route::get('/delete/{id}', 'NewsletterController@delete')->name('delete');
     });
 });
