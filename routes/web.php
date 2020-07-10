@@ -70,4 +70,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
         Route::get('/delete/{id}', 'SubCategoryController@delete')->name('delete');
     });
 
+    // Coupon Routes
+    Route::namespace ('Category')->prefix('/coupons')->name('coupon.')->group(function () {
+        Route::get('/', 'CouponController@index')->name('index');
+        Route::post('/store', 'CouponController@store')->name('store');
+        Route::get('/edit/{id}', 'CouponController@edit')->name('edit');
+        Route::post('/update/{id}', 'CouponController@update')->name('update');
+        Route::get('/delete/{id}', 'CouponController@delete')->name('delete');
+    });
 });
