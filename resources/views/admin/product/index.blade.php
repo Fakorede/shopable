@@ -53,8 +53,15 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="{{ route('admin.products.destroy', $product->id) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>
+                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info btn-sm" id="edit" title="Edit Product"><i class="fa fa-edit"></i></a>
+                            <a href="{{ route('admin.products.destroy', $product->id) }}" class="btn btn-danger btn-sm" id="delete" title="Delete Product"><i class="fa fa-trash"></i></a>
+                            <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-warning btn-sm" id="show" title="View Product"><i class="fa fa-eye"></i></a>
+
+                            @if ($product->status == 1)
+                                <a href="{{ route('admin.products.status', $product->id) }}" id="inactive" title="Make Inactive" class="btn btn-danger btn-sm"><i class="fa fa-thumbs-down"></i></a>
+                            @else
+                                <a href="{{ route('admin.products.status', $product->id) }}" id="active" title="Make Active" class="btn btn-info btn-sm"><i class="fa fa-thumbs-up"></i></a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -65,6 +72,17 @@
 
     </div><!-- sl-pagebody -->
 </div>
+
+
+<script>
+$('#edit').tooltip(options)
+$('#delete').tooltip(options)
+$('#show').tooltip(options)
+$('#active').tooltip(options)
+$('#inactive').tooltip(options)
+$(function () { $("[data-toggle = 'tooltip']").tooltip(); });
+</script>
+
 
 
 <!-- modal -->

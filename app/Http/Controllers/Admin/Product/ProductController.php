@@ -26,7 +26,6 @@ class ProductController extends Controller
             ->select('products.*', 'categories.name as cname', 'brands.name as bname')
             ->get();
 
-        // return response()->json($products);
         return view('admin.product.index', compact('products'));
     }
 
@@ -47,6 +46,35 @@ class ProductController extends Controller
     {
         $subcategories = DB::table('subcategories')->where('category_id', $id)->get();
         return json_encode($subcategories);
+    }
+
+    /**
+     * Make the specified resource active or inactive.
+     * 
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function status($id) {
+        $status = DB::table('products')->where('id', $id)->value('status');
+
+        if($status == 1) {
+            DB::table('products')->where('id', $id)->update([
+                'status' => 0
+            ]);
+        } else {
+            DB::table('products')->where('id', $id)->update([
+                'status' => 1
+            ]);
+        }
+    
+
+        $notification = array(
+            'message' => 'Product status successfully updated!',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+
     }
 
     /**
