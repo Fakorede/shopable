@@ -24,31 +24,31 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label">Product Name: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="text" name="name"  placeholder="Enter Product Name">
+                          <input class="form-control" type="text" name="name" required placeholder="Enter Product Name">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label">Product Code: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="text" name="code"  placeholder="Enter Product Code">
+                          <input class="form-control" type="text" name="code" required placeholder="Enter Product Code">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label">Quantity: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="text" name="quantity"  placeholder="Product Quantity">
+                          <input class="form-control" type="text" name="quantity" required placeholder="Product Quantity">
                         </div>
                       </div>
                        <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label">Discount Price: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="text" name="discount_price"  placeholder="Discount Price">
+                          <label class="form-control-label">Discount Price:</label>
+                          <input class="form-control" type="text" name="discount_price" placeholder="Discount Price">
                         </div>
                       </div>
                       <div class="col-lg-4">
                         <div class="form-group mg-b-10-force">
                           <label class="form-control-label">Category: <span class="tx-danger">*</span></label>
-                            <select class="form-control select2" data-placeholder="Choose Category" name="category_id">
+                            <select class="form-control select2" required data-placeholder="Choose Category" name="category_id">
                             <option disabled selected label="Choose Category">--- choose category ---</option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -59,7 +59,7 @@
                       <div class="col-lg-4">
                         <div class="form-group mg-b-10-force">
                           <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label>
-                            <select class="form-control select2" data-placeholder="Choose SubCategory" name="subcategory_id">
+                            <select class="form-control select2" required data-placeholder="Choose SubCategory" name="subcategory_id">
                             <option disabled selected label="Choose Sub Category">--- Choose Sub Category ---</option>
                             </select>
                         </div>
@@ -67,7 +67,7 @@
                       <div class="col-lg-4">
                         <div class="form-group mg-b-10-force">
                           <label class="form-control-label">Brand: <span class="tx-danger">*</span></label>
-                            <select class="form-control select2" data-placeholder="Choose Brand" name="brand_id">
+                            <select class="form-control select2" required data-placeholder="Choose Brand" name="brand_id">
                             <option disabled selected label="Choose Brand">--- choose brand ---</option>
                             @foreach($brands as $brand)
                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -78,31 +78,31 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label">Product Size: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="text" name="size" id="size" data-role="tagsinput" placeholder="Product Size" >
+                          <input class="form-control" type="text" required name="size" id="size" data-role="tagsinput" placeholder="Product Size" >
                         </div>
                       </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="text" name="color" id="color" data-role="tagsinput" placeholder="Product Color" >
+                          <input class="form-control" type="text" required name="color" id="color" data-role="tagsinput" placeholder="Product Color" >
                         </div>
                       </div>
                       <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label">Product Price: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="text" name="price" placeholder="Product Price" >
+                          <input class="form-control" type="text" required name="price" placeholder="Product Price" >
                         </div>
                       </div>
                        <div class="col-lg-12">
                         <div class="form-group">
                           <label class="form-control-label">Product Description: <span class="tx-danger">*</span></label>
-                            <textarea class="form-control" id="summernote"  name="description" placeholder="Product Description"></textarea>     
+                            <textarea class="form-control" id="summernote" required name="description" placeholder="Product Description"></textarea>     
                         </div>
                       </div>
                     <div class="col-lg-12">
                         <div class="form-group">
                           <label class="form-control-label">Video Link:</label>
-                          <input class="form-control" name="video_link" placeholder="Link to Promo Video" >
+                          <input class="form-control" name="video_link" required placeholder="Link to Promo Video" >
                         </div>
                       </div>
                     <div class="col-lg-4">

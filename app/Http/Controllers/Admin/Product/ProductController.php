@@ -21,8 +21,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = DB::table('products')
+            ->join('categories', 'products.category_id', 'categories.id')
+            ->join('brands', 'products.brand_id', 'brands.id')
+            ->select('products.*', 'categories.name as cname', 'brands.name as bname')
             ->get();
 
+        // return response()->json($products);
         return view('admin.product.index', compact('products'));
     }
 
@@ -54,9 +58,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'image_one' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-            'image_two' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-            'image_three' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+            'image_one' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'image_two' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'image_three' => 'required|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $data = array();
@@ -81,6 +85,7 @@ class ProductController extends Controller
         $data['trending'] = $request->trending;
         $data['buyone_getone'] = $request->buyone_getone;
         $data['status'] = 1;
+        $data['created_at'] = now();
 
         $image_one = $request->image_one;
         $image_two = $request->image_two;
@@ -104,7 +109,7 @@ class ProductController extends Controller
 
         $notification = array(
             'message' => 'Product inserted successfully!',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         );
 
         return redirect()->back()->with($notification);
