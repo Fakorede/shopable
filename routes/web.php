@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
@@ -89,7 +90,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
     // Product Routes
     Route::namespace ('Product')->group(function () {
         Route::resource('/products', 'ProductController');
+        Route::get('/products/{product}/status', 'ProductController@status')->name('products.status');
     });
 
 });
-
