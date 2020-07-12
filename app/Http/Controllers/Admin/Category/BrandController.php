@@ -31,7 +31,7 @@ class BrandController extends Controller
             $file = $request->file('logo');
             $ext = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $ext;
-            $filePath = 'media/brand/';
+            $filePath = 'media/brands/';
             $fileUrl = $filePath . $fileName;
             $file->move($filePath, $fileName);
 
@@ -107,7 +107,7 @@ class BrandController extends Controller
             $file = $request->file('logo');
             $ext = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $ext;
-            $filePath = 'media/brand/';
+            $filePath = 'media/brands/';
             $fileUrl = $filePath . $fileName;
             $file->move($filePath, $fileName);
 

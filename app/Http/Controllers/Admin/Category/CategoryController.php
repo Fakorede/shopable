@@ -31,7 +31,6 @@ class CategoryController extends Controller
         DB::table('categories')->insert([
             'name' => $request->name,
             'created_at' => now(),
-            'updated_at' => now(),
         ]);
 
         $notification = array(

@@ -30,6 +30,10 @@
 
     <title>Shopable - Admin Dashboard</title>
 
+    <!-- TagsInput CDN -->
+    <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
+
+
     <!-- vendor css -->
     <link href="{{ asset('backend/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/lib/Ionicons/css/ionicons.css') }}" rel="stylesheet">
@@ -39,13 +43,19 @@
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/starlight.css') }}">
 
-    <!-- Toastr -->
+
+    <!-- Toastr CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
-    <!-- DataTable -->
+    <!-- DataTable CSS-->
     <link href="{{ asset('backend/lib/highlightjs/github.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/lib/select2/css/select2.min.css') }}" rel="stylesheet">
+
+    <!-- Summernote CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/lib/summernote/summernote-bs4.css') }}">
+    
+
   </head>
 
   <body>
@@ -106,13 +116,91 @@
 
         @yield('content')
 
-        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
     <script src="{{ asset('backend/lib/jquery/jquery.js') }}"></script>
     <script src="{{ asset('backend/lib/popper.js/popper.js') }}"></script>
     <script src="{{ asset('backend/lib/bootstrap/bootstrap.js') }}"></script>
     <script src="{{ asset('backend/lib/jquery-ui/jquery-ui.js') }}"></script>
     <script src="{{ asset('backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('select[name="category_id"]').on('change',function(){
+                var category_id = $(this).val();
+                if (category_id) {
+                    $.ajax({
+                        url: "{{ url('/subcategories/') }}" + '/' + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) { 
+                            console.log(data);
+                            var d = $('select[name="subcategory_id"]').empty();
+                            $('select[name="subcategory_id"]').append('<option disabled selected value="">Choose Sub Category</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="subcategory_id"]').append(
+                                    '<option value="'+ value.id + '">' + value.name + '</option>'
+                                );
+                            });
+                        },
+                        error: function(msg) {
+                            console.log("fail", msg);
+                        }
+                    });
+    
+                }else {
+                    $('select[name="subcategory_id"]').empty();
+                    $('select[name="subcategory_id"]').append('<option value="0">Choose category first</option>');
+                }
+    
+            });
+        });
+    
+    </script>
+
+    <script type="text/javascript">
+        function readURL(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                $('#one')
+                .attr('src', e.target.result)
+                .width(80)
+                .height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function readURL2(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                $('#two')
+                .attr('src', e.target.result)
+                .width(80)
+                .height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function readURL3(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                $('#three')
+                .attr('src', e.target.result)
+                .width(80)
+                .height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
     <script src="{{ asset('backend/lib/highlightjs/highlight.pack.js') }}"></script>
     <script src="{{ asset('backend/lib/datatables/jquery.dataTables.js') }}"></script>
@@ -146,6 +234,41 @@
     <script src="{{ asset('backend/lib/Flot/jquery.flot.pie.js') }}"></script>
     <script src="{{ asset('backend/lib/Flot/jquery.flot.resize.js') }}"></script>
     <script src="{{ asset('backend/lib/flot-spline/jquery.flot.spline.js') }}"></script>
+
+
+    <script src="{{ asset('backend/lib/medium-editor/medium-editor.js') }}"></script>
+    <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
+    
+    <script>
+      $(function(){
+        'use strict';
+
+        // Inline editor
+        var editor = new MediumEditor('.editable');
+
+        // Summernote editor
+        $('#summernote').summernote({
+          height: 150,
+          tooltip: false
+        })
+      });
+    </script>
+
+    <script>
+      $(function(){
+        'use strict';
+
+        // Inline editor
+        var editor = new MediumEditor('.editable');
+
+        // Summernote editor
+        $('#summernote1').summernote({
+          height: 150,
+          tooltip: false
+        })
+      });
+    </script>
+
 
     <script src="{{ asset('backend/js/starlight.js') }}"></script>
     <script src="{{ asset('backend/js/ResizeSensor.js') }}"></script>

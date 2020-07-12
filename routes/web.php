@@ -7,6 +7,9 @@ Route::view('/', 'pages.index');
 
 Route::post('/newsletter/store', 'FrontendController@storeNewsletter')->name('newsletter.store');
 
+// Get SubCategories with AJAX request
+Route::get('/subcategories/{id}', 'Admin\Product\ProductController@getSubCategories')->name('subcategories');
+
 // User Auth Routes
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -59,7 +62,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
         Route::get('/delete/{id}', 'BrandController@delete')->name('delete');
     });
 
-    // Brand Routes
+    // SubCategory Routes
     Route::namespace ('Category')->prefix('/subcategories')->name('subcategory.')->group(function () {
         Route::get('/', 'SubCategoryController@index')->name('index');
         Route::post('/store', 'SubCategoryController@store')->name('store');
@@ -82,4 +85,11 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
         Route::get('/', 'NewsletterController@index')->name('index');
         Route::get('/delete/{id}', 'NewsletterController@delete')->name('delete');
     });
+
+    // Product Routes
+    Route::namespace ('Product')->group(function () {
+        Route::resource('/products', 'ProductController');
+    });
+
 });
+
