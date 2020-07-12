@@ -91,6 +91,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function () {
     Route::namespace ('Product')->group(function () {
         Route::resource('/products', 'ProductController');
         Route::get('/products/{product}/status', 'ProductController@status')->name('products.status');
+        Route::get('/products/{product}/delete', 'ProductController@delete')->name('products.delete');
     });
 
 });
