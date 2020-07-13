@@ -102,7 +102,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                           <label class="form-control-label">Video Link:</label>
-                          <input class="form-control" name="video_link" required placeholder="Link to Promo Video" >
+                          <input class="form-control" name="video_link" placeholder="Link to Promo Video" >
                         </div>
                       </div>
                     <div class="col-lg-4">

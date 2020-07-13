@@ -54,7 +54,7 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info btn-sm" id="edit" title="Edit Product"><i class="fa fa-edit"></i></a>
-                            <a href="{{ route('admin.products.destroy', $product->id) }}" class="btn btn-danger btn-sm" id="delete" title="Delete Product"><i class="fa fa-trash"></i></a>
+                            <a href="{{ route('admin.products.delete', $product->id) }}" class="btn btn-danger btn-sm" id="delete" title="Delete Product"><i class="fa fa-trash"></i></a>
                             <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-warning btn-sm" id="show" title="View Product"><i class="fa fa-eye"></i></a>
 
                             @if ($product->status == 1)

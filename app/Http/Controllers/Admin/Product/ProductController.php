@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Image;
 
 class ProductController extends Controller
@@ -187,8 +188,23 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $product = DB::table('products')->where('id', $id)->first();
+
+        $image1 = $product->image_one;
+        $image2 = $product->image_two;
+        $image3 = $product->image_three;
+
+        File::delete([$image1, $image2, $image3]);
+
+        DB::table('products')->where('id', $id)->delete();
+
+        $notification = array(
+            'message' => 'Product deleted successfully!',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
     }
 }
